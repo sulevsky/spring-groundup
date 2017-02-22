@@ -3,6 +3,7 @@ package com.sulevsky.main;
 import com.sulevsky.model.Report;
 import com.sulevsky.model.Task;
 import com.sulevsky.model.Worker;
+import com.sulevsky.repository.JdbcTaskRepository;
 import com.sulevsky.repository.MemoryTaskRepository;
 import com.sulevsky.repository.MemoryWorkerRepository;
 import com.sulevsky.repository.TaskRepository;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class Main {
 
-    private TaskRepository taskRepository = new MemoryTaskRepository();
+    private TaskRepository taskRepository = new JdbcTaskRepository();
     private TaskService taskService = new TaskServiceImpl(taskRepository);
 
     private WorkerRepository workerRepository = new MemoryWorkerRepository();
