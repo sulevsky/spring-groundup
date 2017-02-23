@@ -3,21 +3,13 @@ package com.sulevsky.main;
 import com.sulevsky.model.Report;
 import com.sulevsky.model.Task;
 import com.sulevsky.model.Worker;
-import com.sulevsky.repository.JdbcTaskRepository;
-import com.sulevsky.repository.MemoryTaskRepository;
-import com.sulevsky.repository.MemoryWorkerRepository;
-import com.sulevsky.repository.TaskRepository;
-import com.sulevsky.repository.WorkerRepository;
 import com.sulevsky.service.AssignService;
-import com.sulevsky.service.AssignServiceImpl;
 import com.sulevsky.service.ReportGenerationService;
-import com.sulevsky.service.ReportGenerationServiceImpl;
 import com.sulevsky.service.TaskService;
-import com.sulevsky.service.TaskServiceImpl;
 import com.sulevsky.service.WorkerService;
-import com.sulevsky.service.WorkerServiceImpl;
-import com.sulevsky.view.ConsoleReportView;
 import com.sulevsky.view.ReportView;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,53 +17,50 @@ import java.util.List;
 
 public class Main {
 
-    private TaskRepository taskRepository = new JdbcTaskRepository();
-    private TaskService taskService = new TaskServiceImpl(taskRepository);
-
-    private WorkerRepository workerRepository = new MemoryWorkerRepository();
-    private WorkerService workerService = new WorkerServiceImpl(workerRepository);
-    private AssignService assignService = new AssignServiceImpl(taskService);
-
-    private ReportGenerationService reportGenerationService = new ReportGenerationServiceImpl(taskService, workerService);
-
-    private ReportView reportView = new ConsoleReportView();
-
     public static void main(String[] args) {
+        ApplicationContext applicationContext
+                = new ClassPathXmlApplicationContext("application-context.xml");
+
+        WorkerService workerService = applicationContext.getBean(WorkerService.class);
+        TaskService taskService = applicationContext.getBean(TaskService.class);
+        AssignService assignService = applicationContext.getBean(AssignService.class);
+        ReportGenerationService reportGenerationService = applicationContext.getBean(ReportGenerationService.class);
+        ReportView reportView = applicationContext.getBean(ReportView.class);
+
         Main main = new Main();
-        main.createTestWorkers();
-        main.createTestTasks();
-        main.assignTasks();
-        Report report = main.generateReport();
-        main.showReport(report);
+        main.createTestWorkers(workerService);
+        main.createTestTasks(taskService);
+        main.assignTasks(taskService, workerService, assignService);
+        Report report = main.generateReport(reportGenerationService);
+        main.showReport(report, reportView);
 
     }
 
-    private Report generateReport() {
+    private Report generateReport(ReportGenerationService reportGenerationService) {
         return reportGenerationService.generateReport();
     }
 
-    private void showReport(Report report) {
+    private void showReport(Report report, ReportView reportView) {
         reportView.showReport(report);
     }
 
-    private void assignTasks() {
+    private void assignTasks(TaskService taskService, WorkerService workerService, AssignService assignService) {
         List<Task> tasks = taskService.findAllTasks();
         List<Worker> workers = workerService.findAll();
         assignService.assignTask(workers.get(0), tasks.get(0));
         assignService.assignTask(workers.get(0), tasks.get(1));
         assignService.assignTask(workers.get(1), tasks.get(2));
         assignService.assignTask(workers.get(2), tasks.get(3));
-
     }
 
-    private void createTestWorkers() {
+    private void createTestWorkers(WorkerService workerService) {
         workerService.createWorker("Lena", "Lenova");
         workerService.createWorker("Ivan", "Ivanov");
         workerService.createWorker("Petr", "Petrov");
         workerService.createWorker("Alla", "Lazy");
     }
 
-    private void createTestTasks() {
+    private void createTestTasks(TaskService taskService) {
         taskService.createTask("Clean room",
                                LocalDateTime.of(2017, 2, 22, 12, 0),
                                LocalDateTime.of(2017, 2, 22, 16, 0),
