@@ -6,13 +6,15 @@ public class ConsoleReportView implements ReportView {
 
     @Override
     public void showReport(Report report) {
-        System.out.println("--------------------");
+        System.out.println(generateView(report));
+    }
+
+    @Override
+    public String generateView(Report report) {
+        String result = "";
         for (Report.ReportEntry reportEntry : report.getEntries()) {
-            System.out.println(String.format("%s %s %s",
-                                             reportEntry.getWorker().getLastName(),
-                                             reportEntry.getWorker().getFirstName(),
-                                             reportEntry.getSalary().doubleValue()));
+            result += reportEntry.getWorker().getLastName() + "\n";
         }
-        System.out.println("--------------------");
+        return result;
     }
 }
