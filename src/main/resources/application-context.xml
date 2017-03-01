@@ -27,7 +27,7 @@
         <constructor-arg name="workerService" ref="workerService"/>
     </bean>
     <!--<bean id="reportView" class="com.sulevsky.view.FormattedConsoleReportView">-->
-    <bean id="reportView" class="com.sulevsky.view.ConsoleReportView">
+    <bean id="reportView" class="com.sulevsky.view.JsonReportViewImpl">
     </bean>
 
 </beans>

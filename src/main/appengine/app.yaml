@@ -11,3 +11,7 @@ handlers:
 
 manual_scaling:
   instances: 1
+
+env_variables:
+  JAVA_OPTS: >-
+    -D.level=trace
