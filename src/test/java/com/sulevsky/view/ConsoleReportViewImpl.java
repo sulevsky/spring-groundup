@@ -15,7 +15,7 @@ public class ConsoleReportViewImpl {
 
 
     @Autowired
-    @Qualifier("consoleReportView")
+    @Qualifier("myCustomNamedBean")
     ReportView reportView;
 
     @Test
