@@ -8,6 +8,7 @@ import com.sulevsky.service.ReportGenerationService;
 import com.sulevsky.service.TaskService;
 import com.sulevsky.service.WorkerService;
 import com.sulevsky.view.ReportView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,6 +25,16 @@ import java.util.List;
 public class DefaultServlet extends HttpServlet {
 
     private ReportGenerationService reportGenerationService;
+
+    public ReportView getReportView() {
+        return reportView;
+    }
+
+    @Autowired
+    public void setReportView(ReportView reportView) {
+        this.reportView = reportView;
+    }
+
     private ReportView reportView;
 
     @Override

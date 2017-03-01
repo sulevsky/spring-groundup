@@ -3,7 +3,9 @@ package com.sulevsky.view;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sulevsky.model.Report;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JsonReportViewImpl implements ReportView {
     @Override
     public void showReport(Report report) {
