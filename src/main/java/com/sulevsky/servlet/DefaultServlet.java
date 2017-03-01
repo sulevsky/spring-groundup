@@ -8,10 +8,11 @@ import com.sulevsky.service.ReportGenerationService;
 import com.sulevsky.service.TaskService;
 import com.sulevsky.service.WorkerService;
 import com.sulevsky.view.ReportView;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +31,7 @@ public class DefaultServlet extends HttpServlet {
         return reportView;
     }
 
-    @Autowired
+    @Inject
     public void setReportView(ReportView reportView) {
         this.reportView = reportView;
     }
