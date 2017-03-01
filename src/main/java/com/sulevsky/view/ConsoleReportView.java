@@ -1,7 +1,9 @@
 package com.sulevsky.view;
 
 import com.sulevsky.model.Report;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConsoleReportView implements ReportView {
 
     @Override
