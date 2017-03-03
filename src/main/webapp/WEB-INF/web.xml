@@ -8,6 +8,7 @@
     <servlet>
         <servlet-name>defaultReport</servlet-name>
         <servlet-class>com.sulevsky.servlet.DefaultServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>defaultReport</servlet-name>

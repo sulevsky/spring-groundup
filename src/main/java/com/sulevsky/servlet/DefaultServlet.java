@@ -1,5 +1,6 @@
 package com.sulevsky.servlet;
 
+import com.sulevsky.AppConfig;
 import com.sulevsky.model.Report;
 import com.sulevsky.model.Task;
 import com.sulevsky.model.Worker;
@@ -8,8 +9,9 @@ import com.sulevsky.service.ReportGenerationService;
 import com.sulevsky.service.TaskService;
 import com.sulevsky.service.WorkerService;
 import com.sulevsky.view.ReportView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -17,7 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,6 +26,8 @@ import java.util.List;
 public class DefaultServlet extends HttpServlet {
 
     private ReportGenerationService reportGenerationService;
+
+    @Autowired
     private ReportView reportView;
 
     @Override
@@ -32,7 +35,7 @@ public class DefaultServlet extends HttpServlet {
         super.init();
 
         ApplicationContext applicationContext
-                = new ClassPathXmlApplicationContext("application-context.xml");
+                = new AnnotationConfigApplicationContext(AppConfig.class);
 
         WorkerService workerService = applicationContext.getBean(WorkerService.class);
         TaskService taskService = applicationContext.getBean(TaskService.class);
