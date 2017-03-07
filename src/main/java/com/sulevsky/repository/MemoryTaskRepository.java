@@ -9,7 +9,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MemoryTaskRepository implements TaskRepository {
-    private Map<String, Task> taskIdToTask = new HashMap<>();
+    private Map<String, Task> taskIdToTask;
+
+    public MemoryTaskRepository(int initialCapacity) {
+        this.taskIdToTask = new HashMap<>(initialCapacity);
+    }
 
     @Override
     public Task save(Task task) {

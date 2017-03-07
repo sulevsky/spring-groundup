@@ -6,6 +6,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="taskRepository" class="com.sulevsky.repository.MemoryTaskRepository">
+        <constructor-arg name="initialCapacity" value="1000"/>
     </bean>
 
     <bean id="taskService" class="com.sulevsky.service.TaskServiceImpl">
@@ -25,7 +26,7 @@
 
     <bean id="reportGenerationService" class="com.sulevsky.service.ReportGenerationServiceImpl"
           c:taskService-ref="taskService"
-          c:_1-ref="workerService"/>
+          c:workerService-ref="workerService"/>
 
     <bean id="reportView" class="com.sulevsky.view.JsonReportViewImpl">
     </bean>
