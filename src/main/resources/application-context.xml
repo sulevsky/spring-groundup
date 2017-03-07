@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
@@ -22,11 +23,10 @@
         <constructor-arg name="workerRepository" ref="workerRepository"/>
     </bean>
 
-    <bean id="reportGenerationService" class="com.sulevsky.service.ReportGenerationServiceImpl">
-        <constructor-arg ref="taskService"/>
-        <constructor-arg ref="workerService"/>
-    </bean>
-    <!--<bean id="reportView" class="com.sulevsky.view.FormattedConsoleReportView">-->
+    <bean id="reportGenerationService" class="com.sulevsky.service.ReportGenerationServiceImpl"
+          c:taskService-ref="taskService"
+          c:_1-ref="workerService"/>
+
     <bean id="reportView" class="com.sulevsky.view.JsonReportViewImpl">
     </bean>
 
