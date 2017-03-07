@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="taskRepository" class="com.sulevsky.repository.MemoryTaskRepository">
-        <constructor-arg name="initialCapacity" value="1000"/>
+        <constructor-arg name="name" value="Test implementation"/>
     </bean>
 
     <bean id="taskService" class="com.sulevsky.service.TaskServiceImpl">

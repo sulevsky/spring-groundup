@@ -11,8 +11,10 @@ import java.util.stream.Collectors;
 public class MemoryTaskRepository implements TaskRepository {
     private Map<String, Task> taskIdToTask;
 
-    public MemoryTaskRepository(int initialCapacity) {
-        this.taskIdToTask = new HashMap<>(initialCapacity);
+
+    public MemoryTaskRepository(String name) {
+        System.out.println("MemoryTaskRepository: " + name + " " + " created");
+        this.taskIdToTask = new HashMap<>();
     }
 
     @Override
