@@ -23,9 +23,8 @@
     </bean>
 
     <bean id="reportGenerationService" class="com.sulevsky.service.ReportGenerationServiceImpl">
-        <constructor-arg name="taskService" ref="taskService"/>
-        <constructor-arg name="workerService" ref="workerService"/>
-
+        <constructor-arg ref="taskService"/>
+        <constructor-arg ref="workerService"/>
     </bean>
     <!--<bean id="reportView" class="com.sulevsky.view.FormattedConsoleReportView">-->
     <bean id="reportView" class="com.sulevsky.view.JsonReportViewImpl">
