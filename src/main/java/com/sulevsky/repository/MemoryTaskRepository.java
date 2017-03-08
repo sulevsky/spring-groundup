@@ -12,8 +12,10 @@ public class MemoryTaskRepository implements TaskRepository {
     private Map<String, Task> taskIdToTask;
 
 
-    public MemoryTaskRepository(String name) {
-        System.out.println("MemoryTaskRepository: " + name + " " + " created");
+    public MemoryTaskRepository(List<String> initialMessages) {
+        for (String message : initialMessages) {
+            System.out.println("MemoryTaskRepository: " + message);
+        }
         this.taskIdToTask = new HashMap<>();
     }
 

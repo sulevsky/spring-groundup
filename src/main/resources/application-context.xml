@@ -6,7 +6,13 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="taskRepository" class="com.sulevsky.repository.MemoryTaskRepository">
-        <constructor-arg name="name" value="Test implementation"/>
+        <constructor-arg name="initialMessages">
+            <list>
+                <value>First message</value>
+                <value>Second message</value>
+                <value>Third message</value>
+            </list>
+        </constructor-arg>
     </bean>
 
     <bean id="taskService" class="com.sulevsky.service.TaskServiceImpl">
