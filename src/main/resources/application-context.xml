@@ -6,12 +6,12 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="taskRepository" class="com.sulevsky.repository.MemoryTaskRepository">
-        <constructor-arg name="initialMessagesToRepeat">
-            <map>
-                <entry key="First message" value="3"/>
-                <entry key="Second message" value="2"/>
-            </map>
-        </constructor-arg>
+        <property name="messagesToLogOnSave">
+            <list>
+                <value>First message</value>
+                <value>Second message</value>
+            </list>
+        </property>
     </bean>
 
     <bean id="taskService" class="com.sulevsky.service.TaskServiceImpl">

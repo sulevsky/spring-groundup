@@ -11,19 +11,21 @@ import java.util.stream.Collectors;
 
 public class MemoryTaskRepository implements TaskRepository {
     private Map<String, Task> taskIdToTask;
+    private List<String> messagesToLogOnSave;
 
-
-    public MemoryTaskRepository(Map<String, Integer> initialMessagesToRepeat) {
-        for (Map.Entry<String, Integer> messageToRepeatNum : initialMessagesToRepeat.entrySet()) {
-            for (int i = 0; i < messageToRepeatNum.getValue(); i++) {
-                System.out.println("MemoryTaskRepository: " + messageToRepeatNum.getKey());
-            }
-        }
+    public MemoryTaskRepository() {
         this.taskIdToTask = new HashMap<>();
+    }
+
+    public void setMessagesToLogOnSave(List<String> messagesToLogOnSave) {
+        this.messagesToLogOnSave = messagesToLogOnSave;
     }
 
     @Override
     public Task save(Task task) {
+        for (String message : messagesToLogOnSave) {
+            System.out.println(message);
+        }
         taskIdToTask.put(task.getId(), task);
         return task;
     }
