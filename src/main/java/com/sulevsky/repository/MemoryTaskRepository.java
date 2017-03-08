@@ -6,13 +6,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MemoryTaskRepository implements TaskRepository {
     private Map<String, Task> taskIdToTask;
 
 
-    public MemoryTaskRepository(List<String> initialMessages) {
+    public MemoryTaskRepository(Set<String> initialMessages) {
         for (String message : initialMessages) {
             System.out.println("MemoryTaskRepository: " + message);
         }

@@ -7,11 +7,11 @@
 
     <bean id="taskRepository" class="com.sulevsky.repository.MemoryTaskRepository">
         <constructor-arg name="initialMessages">
-            <list>
+            <set>
                 <value>First message</value>
                 <value>Second message</value>
                 <value>Third message</value>
-            </list>
+            </set>
         </constructor-arg>
     </bean>
 
