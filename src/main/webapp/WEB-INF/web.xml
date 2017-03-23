@@ -5,12 +5,25 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
+    <listener>
+        <listener-class>com.sulevsky.servlet.SpringApplicationContextListener</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>defaultReport</servlet-name>
-        <servlet-class>com.sulevsky.servlet.DefaultServlet</servlet-class>
+        <servlet-class>com.sulevsky.servlet.ReportServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>defaultReport</servlet-name>
         <url-pattern>/report</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>workerCreator</servlet-name>
+        <servlet-class>com.sulevsky.servlet.WorkerCreationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>workerCreator</servlet-name>
+        <url-pattern>/workers</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,70 +1,42 @@
 package com.sulevsky.servlet;
 
-import com.sulevsky.model.Report;
-import com.sulevsky.model.Task;
-import com.sulevsky.model.Worker;
-import com.sulevsky.service.AssignService;
-import com.sulevsky.service.ReportGenerationService;
-import com.sulevsky.service.TaskService;
-import com.sulevsky.service.WorkerService;
-import com.sulevsky.view.ReportView;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import javax.inject.Inject;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class DefaultServlet extends HttpServlet {
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
-    private ReportGenerationService reportGenerationService;
+import com.sulevsky.model.Task;
+import com.sulevsky.model.Worker;
+import com.sulevsky.service.AssignService;
+import com.sulevsky.service.TaskService;
+import com.sulevsky.service.WorkerService;
+import com.sulevsky.view.ReportView;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-    public ReportView getReportView() {
-        return reportView;
-    }
-
-    @Inject
-    public void setReportView(ReportView reportView) {
-        this.reportView = reportView;
-    }
-
-    private ReportView reportView;
-
+public class SpringApplicationContextListener implements ServletContextListener {
     @Override
-    public void init() throws ServletException {
-        super.init();
+    public void contextInitialized(ServletContextEvent sce) {
 
         ApplicationContext applicationContext
-                = new ClassPathXmlApplicationContext("application-context.xml");
+                = new AnnotationConfigApplicationContext("com.sulevsky");
 
         WorkerService workerService = applicationContext.getBean(WorkerService.class);
         TaskService taskService = applicationContext.getBean(TaskService.class);
         AssignService assignService = applicationContext.getBean(AssignService.class);
-
-        this.reportGenerationService = applicationContext.getBean(ReportGenerationService.class);
-        this.reportView = applicationContext.getBean(ReportView.class);
         this.createTestWorkers(workerService);
         this.createTestTasks(taskService);
         this.assignTasks(taskService, workerService, assignService);
+
+        sce.getServletContext().setAttribute("applicationContext", applicationContext);
+        System.out.println(applicationContext.getBean(ReportView.class));
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void contextDestroyed(ServletContextEvent sce) {
 
-        Report report = reportGenerationService.generateReport();
-        String printedReport = reportView.generateView(report);
-        ServletOutputStream outputStream = resp.getOutputStream();
-
-        outputStream.print(printedReport);
-        outputStream.close();
     }
 
     private void assignTasks(TaskService taskService, WorkerService workerService, AssignService assignService) {
@@ -103,5 +75,4 @@ public class DefaultServlet extends HttpServlet {
                                LocalDateTime.of(2017, 2, 19, 18, 0),
                                BigDecimal.valueOf(801.0));
     }
-
 }

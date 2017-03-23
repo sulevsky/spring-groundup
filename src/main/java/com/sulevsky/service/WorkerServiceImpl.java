@@ -2,9 +2,11 @@ package com.sulevsky.service;
 
 import com.sulevsky.model.Worker;
 import com.sulevsky.repository.WorkerRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class WorkerServiceImpl implements WorkerService {
 
     private IdGenerator idGenerator = new IdGenertorImpl();

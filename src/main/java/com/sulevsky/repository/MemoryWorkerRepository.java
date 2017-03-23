@@ -1,12 +1,14 @@
 package com.sulevsky.repository;
 
 import com.sulevsky.model.Worker;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Repository
 public class MemoryWorkerRepository implements WorkerRepository {
     private Map<String, Worker> workerIdToWorker = new HashMap<>();
 

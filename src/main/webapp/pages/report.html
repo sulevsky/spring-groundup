@@ -1,0 +1,18 @@
+<h2>Report for workers:</h2>
+<div ng-repeat="entry in reportResult.entries">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ entry.worker.firstName }} {{ entry.worker.lastName }}</h3>
+                </div>
+                <div class="panel-body">
+                    Worked hours: {{ covertMillisToHours(entry.duration.seconds) }}
+                    <br>
+                    Salary: {{ entry.salary }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

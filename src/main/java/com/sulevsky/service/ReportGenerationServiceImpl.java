@@ -3,11 +3,13 @@ package com.sulevsky.service;
 import com.sulevsky.model.Report;
 import com.sulevsky.model.Task;
 import com.sulevsky.model.Worker;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.List;
 
+@Service
 public class ReportGenerationServiceImpl implements ReportGenerationService {
 
     private TaskService taskService;

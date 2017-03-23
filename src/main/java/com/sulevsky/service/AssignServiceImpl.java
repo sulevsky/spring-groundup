@@ -2,7 +2,9 @@ package com.sulevsky.service;
 
 import com.sulevsky.model.Task;
 import com.sulevsky.model.Worker;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AssignServiceImpl implements AssignService {
 
     private TaskService taskService;
