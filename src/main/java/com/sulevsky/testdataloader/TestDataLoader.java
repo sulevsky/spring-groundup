@@ -1,42 +1,42 @@
-package com.sulevsky.servlet;
+package com.sulevsky.testdataloader;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 
 import com.sulevsky.model.Task;
 import com.sulevsky.model.Worker;
 import com.sulevsky.service.AssignService;
 import com.sulevsky.service.TaskService;
 import com.sulevsky.service.WorkerService;
-import com.sulevsky.view.ReportView;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
-public class SpringApplicationContextListener implements ServletContextListener {
-    @Override
-    public void contextInitialized(ServletContextEvent sce) {
+@Component
+public class TestDataLoader implements ApplicationRunner {
 
-        ApplicationContext applicationContext
-                = new AnnotationConfigApplicationContext("com.sulevsky");
+    private final WorkerService workerService;
 
-        WorkerService workerService = applicationContext.getBean(WorkerService.class);
-        TaskService taskService = applicationContext.getBean(TaskService.class);
-        AssignService assignService = applicationContext.getBean(AssignService.class);
-        this.createTestWorkers(workerService);
-        this.createTestTasks(taskService);
-        this.assignTasks(taskService, workerService, assignService);
+    private final TaskService taskService;
 
-        sce.getServletContext().setAttribute("applicationContext", applicationContext);
-        System.out.println(applicationContext.getBean(ReportView.class));
+    private final AssignService assignService;
+
+    @Autowired
+    public TestDataLoader(WorkerService workerService,
+                          TaskService taskService,
+                          AssignService assignService) {
+        this.workerService = workerService;
+        this.taskService = taskService;
+        this.assignService = assignService;
     }
 
     @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-
+    public void run(ApplicationArguments args) throws Exception {
+        this.createTestWorkers(workerService);
+        this.createTestTasks(taskService);
+        this.assignTasks(taskService, workerService, assignService);
     }
 
     private void assignTasks(TaskService taskService, WorkerService workerService, AssignService assignService) {

@@ -1,56 +1,27 @@
-buildscript {      // Configuration for building
+buildscript {
+    ext {
+        springBootVersion = '1.5.3.RELEASE'
+    }
     repositories {
-        jcenter()      // Bintray's repository - a fast Maven Central mirror & more
+        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.google.cloud.tools:appengine-gradle-plugin:+'
-        classpath 'org.akhikhl.gretty:gretty:+'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }
 
 repositories {
-    maven {
-        url 'https://maven-central.storage.googleapis.com'             // Google's mirror of Maven Central
-//   url 'https://oss.sonatype.org/content/repositories/snapshots' // SNAPSHOT Repository (if needed)
-    }
     jcenter()
     mavenCentral()
 }
 
 apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'org.akhikhl.gretty'
-apply plugin: 'com.google.cloud.tools.appengine'
+apply plugin: 'org.springframework.boot'
 
 dependencies {
-    providedCompile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
-    compile 'com.google.appengine:appengine:+'
-
-    compile 'org.slf4j:slf4j-api:1.7.21'
-    compile group: 'org.springframework', name: 'spring-context', version: '4.3.6.RELEASE'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
-    compile group: 'javax.inject', name: 'javax.inject', version: '1'
-
-
-    testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.6.RELEASE'
-    testCompile 'junit:junit:4.12'
-    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
-}
-
-
-
-gretty {
-    httpPort = 8080
-    contextPath = '/'
-    servletContainer = 'jetty9'  // What App Engine Flexible uses
-}
-
-appengine {
-    deploy {   // deploy configuration
-        stopPreviousVersion = true  // default - stop the current version
-        promote = true              // default - & make this the current version
-    }
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 group = 'com.sulevsky'   // Generated output GroupId
@@ -58,6 +29,3 @@ version = '1.0-SNAPSHOT' // Version in generated output
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-//gradle appengineDeploy
-//./gradlew appRun
