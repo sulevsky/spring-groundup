@@ -1,10 +1,12 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.3.RELEASE'
+        springBootVersion = '2.0.0.M3'
     }
     repositories {
         jcenter()
         mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
@@ -14,13 +16,25 @@ buildscript {
 repositories {
     jcenter()
     mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.cloud:spring-cloud-config-client'
+    compile 'org.hibernate:hibernate-java8:5.0.12.Final'
+
+
+    runtime 'org.postgresql:postgresql'
+
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -29,3 +43,14 @@ version = '1.0-SNAPSHOT' // Version in generated output
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+
+ext {
+    springCloudVersion = 'Finchley.M1'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}

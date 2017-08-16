@@ -16,6 +16,7 @@ public class ReportController {
 
     private ReportView reportView;
 
+
     @Autowired
     public ReportController(ReportGenerationService reportGenerationService, ReportView reportView) {
         this.reportGenerationService = reportGenerationService;

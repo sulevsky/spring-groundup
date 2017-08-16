@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public class WorkerServiceImpl implements WorkerService {
 
-    private IdGenerator idGenerator = new IdGenertorImpl();
+    private IdGenerator idGenerator = new IdGeneratorImpl();
     private WorkerRepository workerRepository;
 
     public WorkerServiceImpl(WorkerRepository workerRepository) {

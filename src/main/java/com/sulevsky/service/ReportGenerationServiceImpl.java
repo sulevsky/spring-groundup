@@ -38,7 +38,7 @@ public class ReportGenerationServiceImpl implements ReportGenerationService {
     private Duration totalDuration(List<Task> workersTasks) {
         return workersTasks
                 .stream()
-                .map(task -> Duration.between(task.getFrom(), task.getTill()))
+                .map(task -> Duration.between(task.getStart(), task.getTill()))
                 .reduce(Duration::plus)
                 .orElse(Duration.ZERO);
     }

@@ -1,6 +1,12 @@
 package com.sulevsky.model;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Worker {
+    @Id
     private String id;
     private String firstName;
     private String lastName;
@@ -9,6 +15,9 @@ public class Worker {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Worker() {
     }
 
     public String getId() {

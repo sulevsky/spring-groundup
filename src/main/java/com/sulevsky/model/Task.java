@@ -1,22 +1,32 @@
 package com.sulevsky.model;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
 public class Task {
+    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String description;
-    private LocalDateTime from;
+    private LocalDateTime start;
     private LocalDateTime till;
     private BigDecimal price;
+    @Embedded
     private Worker assignee;
 
-    public Task(String id, String description, LocalDateTime from, LocalDateTime till, BigDecimal price) {
+    public Task(String id, String description, LocalDateTime start, LocalDateTime till, BigDecimal price) {
         this.id = id;
         this.description = description;
-        this.from = from;
+        this.start = start;
         this.till = till;
         this.price = price;
+    }
+
+    public Task() {
     }
 
     public String getId() {
@@ -35,12 +45,12 @@ public class Task {
         this.description = description;
     }
 
-    public LocalDateTime getFrom() {
-        return from;
+    public LocalDateTime getStart() {
+        return start;
     }
 
-    public void setFrom(LocalDateTime from) {
-        this.from = from;
+    public void setStart(LocalDateTime start) {
+        this.start = start;
     }
 
     public LocalDateTime getTill() {

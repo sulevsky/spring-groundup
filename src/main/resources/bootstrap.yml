@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: hello
+  cloud:
+    config.uri: http://localhost:8888
+  profiles:
+    active: default
+server:
+  port: 5000
+
+spring:
+   datasource:
+        url: jdbc:postgresql://localhost:5432/ground-up
+        username: postgres
+        password: password
+hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.show_sql: true
+spring.jpa.properties.hibernate.use_sql_comments: true
+spring.jpa.properties.hibernate.format_sql: true
+spring.jpa.generate-ddl: true
+
+
+#docker run -d -p 5432:5432 --name ground-up \
+#           -e POSTGRES_USER=postgres \
+#           -e POSTGRES_PASSWORD=password \
+#           -e POSTGRES_DB=ground-up postgres:9.6-alpine

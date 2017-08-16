@@ -3,6 +3,7 @@ package com.sulevsky.service;
 import com.sulevsky.model.Task;
 import com.sulevsky.model.Worker;
 import com.sulevsky.repository.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -12,9 +13,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl implements TaskService {
-    private IdGenerator idGenerator = new IdGenertorImpl();//must be singleton
+    private IdGenerator idGenerator = new IdGeneratorImpl();//must be singleton
     private TaskRepository taskRepository;
 
+    @Autowired
     public TaskServiceImpl(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
