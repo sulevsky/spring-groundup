@@ -18,8 +18,7 @@ public class JsonReportViewImpl implements ReportView {
         String valueAsString = null;
         try {
             valueAsString = objectMapper.writeValueAsString(report);
-        }
-        catch (JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
             valueAsString = "{error:\"Can't serialize\"}";
         }

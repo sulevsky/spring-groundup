@@ -1,14 +1,14 @@
 package com.sulevsky.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import com.sulevsky.model.Report;
 import com.sulevsky.model.Task;
 import com.sulevsky.model.Worker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import static java.util.Collections.singletonList;
 
@@ -38,7 +38,5 @@ public class ReportGenerationServiceImplTest {
         Report report = reportGenerationService.generateReport();
         Assert.assertEquals(1, report.getEntries().size());
         Assert.assertEquals(BigDecimal.TEN, report.getEntries().get(0).getSalary());
-
     }
-
 }

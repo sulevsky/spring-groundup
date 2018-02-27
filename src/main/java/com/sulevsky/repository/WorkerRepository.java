@@ -1,8 +1,8 @@
 package com.sulevsky.repository;
 
-import com.sulevsky.model.Worker;
-
 import java.util.List;
+
+import com.sulevsky.model.Worker;
 
 public interface WorkerRepository {
     void save(Worker worker);
@@ -11,5 +11,4 @@ public interface WorkerRepository {
     List<Worker> findAll();
 
     Worker delete(String id);
-
 }

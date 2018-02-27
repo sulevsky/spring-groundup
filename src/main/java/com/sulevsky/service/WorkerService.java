@@ -1,8 +1,8 @@
 package com.sulevsky.service;
 
-import com.sulevsky.model.Worker;
-
 import java.util.List;
+
+import com.sulevsky.model.Worker;
 
 public interface WorkerService {
     Worker createWorker(String firstName, String lastName);

@@ -1,14 +1,14 @@
 package com.sulevsky.service;
 
-import com.sulevsky.model.Task;
-import com.sulevsky.model.Worker;
-import com.sulevsky.repository.TaskRepository;
-import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.sulevsky.model.Task;
+import com.sulevsky.model.Worker;
+import com.sulevsky.repository.TaskRepository;
+import org.springframework.stereotype.Service;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -45,6 +45,4 @@ public class TaskServiceImpl implements TaskService {
                 .filter(task -> task.getAssignee().getId().equals(worker.getId()))
                 .collect(Collectors.toList());
     }
-
-
 }

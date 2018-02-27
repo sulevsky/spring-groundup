@@ -1,11 +1,11 @@
 package com.sulevsky.repository;
 
-import com.sulevsky.model.Task;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.sulevsky.model.Task;
 
 public class JdbcTaskRepository implements TaskRepository {
     //totally the same

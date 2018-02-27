@@ -32,6 +32,6 @@ app.controller('reportController', ['$scope', '$resource', function ($scope, $re
     $scope.report = $resource("/report");
     $scope.reportResult = $scope.report.get();
     $scope.covertMillisToHours = function (millis) {
-        return millis / ( 60 * 60);
+        return millis / (60 * 60);
     }
 }]);

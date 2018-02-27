@@ -1,0 +1,6 @@
+FROM frolvlad/alpine-oraclejdk8:slim
+ENV JAVA_OPTS="-Xms512m -Xmx1g"
+VOLUME /tmp
+ADD spring-groundup-*.jar app.jar
+RUN sh -c 'touch /app.jar'
+ENTRYPOINT [ "sh", "-c", "java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]

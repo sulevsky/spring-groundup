@@ -1,9 +1,8 @@
 package com.sulevsky.repository;
 
-import com.sulevsky.model.Task;
-
-import java.util.Collection;
 import java.util.List;
+
+import com.sulevsky.model.Task;
 
 public interface TaskRepository {
     Task save(Task task);

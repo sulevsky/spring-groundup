@@ -1,10 +1,10 @@
 package com.sulevsky.service;
 
+import java.util.List;
+
 import com.sulevsky.model.Worker;
 import com.sulevsky.repository.WorkerRepository;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class WorkerServiceImpl implements WorkerService {
@@ -32,7 +32,7 @@ public class WorkerServiceImpl implements WorkerService {
         return workers
                 .stream()
                 .filter(worker -> worker.getFirstName().equals(firstName)
-                        && worker.getLastName().equals(lastName))
+                                  && worker.getLastName().equals(lastName))
                 .findFirst()
                 .get();
     }
