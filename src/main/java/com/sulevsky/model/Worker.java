@@ -1,18 +1,17 @@
 package com.sulevsky.model;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class Worker {
     @Id
-    private String id;
+    private String worker_id;
     private String firstName;
     private String lastName;
 
-    public Worker(String id, String firstName, String lastName) {
-        this.id = id;
+    public Worker(String worker_id, String firstName, String lastName) {
+        this.worker_id = worker_id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -20,12 +19,12 @@ public class Worker {
     public Worker() {
     }
 
-    public String getId() {
-        return id;
+    public String getWorker_id() {
+        return worker_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setWorker_id(String worker_id) {
+        this.worker_id = worker_id;
     }
 
     public String getFirstName() {

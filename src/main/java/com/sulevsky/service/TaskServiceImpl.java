@@ -44,7 +44,7 @@ public class TaskServiceImpl implements TaskService {
         List<Task> tasks = findAllTasks();
         return tasks
                 .stream()
-                .filter(task -> task.getAssignee().getId().equals(worker.getId()))
+                .filter(task -> task.getAssignee().getWorker_id().equals(worker.getWorker_id()))
                 .collect(Collectors.toList());
     }
 

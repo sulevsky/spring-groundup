@@ -1,15 +1,7 @@
 package com.sulevsky.repository;
 
 import com.sulevsky.model.Worker;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface WorkerRepository {
-    void save(Worker worker);
-
-    Worker find(String id);
-    List<Worker> findAll();
-
-    Worker delete(String id);
-
+public interface WorkerRepository extends JpaRepository<Worker, String> {
 }
