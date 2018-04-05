@@ -24,7 +24,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task createTask(String description, LocalDateTime from, LocalDateTime to, BigDecimal price) {
         String id = idGenerator.generateId();
-        Task task = new Task(id, description, from, to, price);
+        Task task = new Task(id, description, from, to, price, null);
         saveTask(task);
         return task;
     }
@@ -44,9 +44,7 @@ public class TaskServiceImpl implements TaskService {
         List<Task> tasks = findAllTasks();
         return tasks
                 .stream()
-                .filter(task -> task.getAssignee().getWorker_id().equals(worker.getWorker_id()))
+                .filter(task -> task.getAssigneeId().equals(worker.getWorkerId()))
                 .collect(Collectors.toList());
     }
-
-
 }

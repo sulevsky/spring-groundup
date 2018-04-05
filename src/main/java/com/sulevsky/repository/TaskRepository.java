@@ -1,7 +1,7 @@
 package com.sulevsky.repository;
 
 import com.sulevsky.model.Task;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface TaskRepository extends JpaRepository<Task, String> {
+public interface TaskRepository extends MongoRepository<Task, String> {
 }

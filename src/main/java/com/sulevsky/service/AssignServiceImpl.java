@@ -15,7 +15,7 @@ public class AssignServiceImpl implements AssignService {
 
     @Override
     public Task assignTask(Worker worker, Task task) {
-        task.setAssignee(worker);
+        task.setAssigneeId(worker.getWorkerId());
         return taskService.saveTask(task);
     }
 }

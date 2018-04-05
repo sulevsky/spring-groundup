@@ -1,7 +1,7 @@
 package com.sulevsky.repository;
 
 import com.sulevsky.model.Worker;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface WorkerRepository extends JpaRepository<Worker, String> {
+public interface WorkerRepository extends MongoRepository<Worker, String> {
 }
